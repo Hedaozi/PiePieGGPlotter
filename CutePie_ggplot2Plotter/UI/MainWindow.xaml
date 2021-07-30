@@ -1,12 +1,111 @@
-﻿<Window x:Class="CutePie_ggplot2Plotter.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CutePie_ggplot2Plotter"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+﻿<Fluent:RibbonWindow 
+    x:Class="CutePie_ggplot2Plotter.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Fluent="urn:fluent-ribbon"
+    xmlns:local="clr-namespace:CutePie_ggplot2Plotter"
+    mc:Ignorable="d"
+    Title="Cute Pie's ggplot2 Plotter"
+    FontFamily="Times New Roman" FontSize="14"
+    Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Fluent:Ribbon>
+            <Fluent:RibbonTabItem Header="Data">
+                <Fluent:RibbonGroupBox Header="DataFrame">
+                    <Fluent:Button Header="Textual" Size="Middle"/>
+                    <Fluent:Button Header="RDS" Size="Middle"/>
+                    <Fluent:Button Header="SQL" Size="Middle"/>
+                    <Fluent:Button Header="Excel" Size="Middle"/>
+                    <Fluent:Button Header="Stata" Size="Middle"/>
+                    <Fluent:Button Header="SPSS" Size="Middle"/>
+                    <Fluent:Button Header="SAS" Size="Middle"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Spatial Features">
+                    <Fluent:Button Header="Shapefile" Size="Middle"/>
+                    <Fluent:Button Header="GeoJson" Size="Middle"/>
+                    <Fluent:Button Header="KML" Size="Middle"/>
+                    <Fluent:Button Header="GPX" Size="Middle"/>
+                    <Fluent:Button Header="GPKG" Size="Middle"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Data Manipulation">
+                    <Fluent:Button Header="Filter" Size="Middle"/>
+                    <Fluent:Button Header="Sort" Size="Middle"/>
+                    <Fluent:Button Header="Select" Size="Middle"/>
+                    <Fluent:Button Header="Rename" Size="Middle"/>
+                    <Fluent:Button Header="Calculate" Size="Middle"/>
+                    <Fluent:Button Header="Group" Size="Middle"/>
+                    <Fluent:Button Header="Join" Size="Middle"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Plot">
+                <Fluent:RibbonGroupBox Header="Add Elements">
+                    <Fluent:Button Header="Geometry" Size="Middle"/>
+                    <Fluent:Button Header="Facet" Size="Middle"/>
+                    <Fluent:Button Header="Compass" Size="Middle"/>
+                    <Fluent:Button Header="Scale" Size="Middle"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Adjust Elements">
+                    <Fluent:Button Header="Geometry" Size="Middle"/>
+                    <Fluent:Button Header="Facet" Size="Middle"/>
+                    <Fluent:Button Header="Titles" Size="Middle"/>
+                    <Fluent:Button Header="Axis" Size="Middle"/>
+                    <Fluent:Button Header="Panel" Size="Middle"/>
+                    <Fluent:Button Header="Legend" Size="Middle"/>
+                    <Fluent:Button Header="Coordinate" Size="Middle"/>
+                    <Fluent:Button Header="Projection" Size="Middle"/>
+                    <Fluent:Button Header="Compass" Size="Middle"/>
+                    <Fluent:Button Header="Scale" Size="Middle"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Settings">
+                <Fluent:RibbonGroupBox Header="Plot">
+                    <Fluent:CheckBox Header="Render" Size="Middle"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Navigation" Foreground="#8F8F8F" FontSize="16" Margin="15 15 0 20"></TextBlock>
+                    <RadioButton Style="{DynamicResource RadioButtonStyle}" Grid.Row="1" IsChecked="True">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="10 0 0 0" Text="Data Preview"  FontSize="14" VerticalAlignment="Center" 
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type RadioButton}}}" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton  Style="{DynamicResource RadioButtonStyle}" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Margin="10 0 0 0" Text="Plot Design"  FontSize="14" VerticalAlignment="Center"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type RadioButton}}}" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <Border BorderThickness="0 1 0 0" Margin="10" BorderBrush="#EAEAEA" Grid.Row="3"/>
+
+                </Grid>
+            </Grid>
+            
+            <Frame Grid.Column="1">
+                
+            </Frame>
+        </Grid>
     </Grid>
-</Window>
+</Fluent:RibbonWindow>
