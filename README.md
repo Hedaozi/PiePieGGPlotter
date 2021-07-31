@@ -6,3 +6,4 @@ So I plan to start a project that allows users to design ggplot2 plots visually.
 
 The project is based on C#. And I will provide Python version in the future.
 
+For RStudio users, there is a R shiny based package [ggThemeAssist](https://cran.r-project.org/web/packages/ggThemeAssist/index.html).
