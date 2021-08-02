@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Fluent="urn:fluent-ribbon"
+    xmlns:avalon="https://github.com/Dirkster99/AvalonDock"
     xmlns:local="clr-namespace:CutePie_ggplot2Plotter"
     mc:Ignorable="d"
     Title="Cute Pie's ggplot2 Plotter"
@@ -17,55 +18,46 @@
         </Grid.RowDefinitions>
         <Fluent:Ribbon>
             <Fluent:RibbonTabItem Header="Data">
-                <Fluent:RibbonGroupBox Header="DataFrame">
-                    <Fluent:Button Header="Textual" Size="Middle"/>
-                    <Fluent:Button Header="RDS" Size="Middle"/>
-                    <Fluent:Button Header="SQL" Size="Middle"/>
-                    <Fluent:Button Header="Excel" Size="Middle"/>
-                    <Fluent:Button Header="Stata" Size="Middle"/>
-                    <Fluent:Button Header="SPSS" Size="Middle"/>
-                    <Fluent:Button Header="SAS" Size="Middle"/>
+                <Fluent:RibbonGroupBox Header="Import">
+                    <Fluent:DropDownButton Header="Table Data" Size="Middle">
+                        <Fluent:Button Header="Textual" Size="Middle"/>
+                        <Fluent:Button Header="RDS" Size="Middle"/>
+                        <Fluent:Button Header="Excel" Size="Middle"/>
+                        <Fluent:Button Header="Stata" Size="Middle"/>
+                        <Fluent:Button Header="SPSS" Size="Middle"/>
+                        <Fluent:Button Header="SAS" Size="Middle"/>
+                    </Fluent:DropDownButton>
+                    <Fluent:DropDownButton Header="Spatial Features" Size="Middle">
+                        <Fluent:Button Header="Shapefile" Size="Middle"/>
+                        <Fluent:Button Header="GeoJson" Size="Middle"/>
+                        <Fluent:Button Header="KML" Size="Middle"/>
+                        <Fluent:Button Header="GPX" Size="Middle"/>
+                        <Fluent:Button Header="GPKG" Size="Middle"/>
+                    </Fluent:DropDownButton>
+                    <Fluent:Button Header="From DataBase" Size="Middle"/>
                 </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="Spatial Features">
-                    <Fluent:Button Header="Shapefile" Size="Middle"/>
-                    <Fluent:Button Header="GeoJson" Size="Middle"/>
-                    <Fluent:Button Header="KML" Size="Middle"/>
-                    <Fluent:Button Header="GPX" Size="Middle"/>
-                    <Fluent:Button Header="GPKG" Size="Middle"/>
-                </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="Data Manipulation">
-                    <Fluent:Button Header="Filter" Size="Middle"/>
-                    <Fluent:Button Header="Sort" Size="Middle"/>
-                    <Fluent:Button Header="Select" Size="Middle"/>
-                    <Fluent:Button Header="Rename" Size="Middle"/>
-                    <Fluent:Button Header="Calculate" Size="Middle"/>
-                    <Fluent:Button Header="Group" Size="Middle"/>
+                <Fluent:RibbonGroupBox Header="Manipulation">
+                    <Fluent:DropDownButton Header="Row" Size="Middle">
+                        <Fluent:Button Header="Filter" Size="Middle"/>
+                        <Fluent:Button Header="Sort" Size="Middle"/>
+                    </Fluent:DropDownButton>
+                    <Fluent:DropDownButton Header="Column" Size="Middle">
+                        <Fluent:Button Header="Select" Size="Middle"/>
+                        <Fluent:Button Header="Rename" Size="Middle"/>
+                        <Fluent:Button Header="Calculate" Size="Middle"/>
+                    </Fluent:DropDownButton>
                     <Fluent:Button Header="Join" Size="Middle"/>
+                    <Fluent:Button Header="Group" Size="Middle"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="Plot">
-                <Fluent:RibbonGroupBox Header="Add Elements">
-                    <Fluent:Button Header="Geometry" Size="Middle"/>
-                    <Fluent:Button Header="Facet" Size="Middle"/>
-                    <Fluent:Button Header="Compass" Size="Middle"/>
-                    <Fluent:Button Header="Scale" Size="Middle"/>
+                <Fluent:RibbonGroupBox Header="View">
+                    <Fluent:CheckBox Header="Show Attributes" Size="Middle" IsChecked="True"/>
+                    <Fluent:CheckBox Header="Show Code" Size="Middle" IsChecked="True"/>
+                    <Fluent:CheckBox Header="Render" Size="Middle" IsChecked="True"/>
                 </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="Adjust Elements">
-                    <Fluent:Button Header="Geometry" Size="Middle"/>
-                    <Fluent:Button Header="Facet" Size="Middle"/>
-                    <Fluent:Button Header="Titles" Size="Middle"/>
-                    <Fluent:Button Header="Axis" Size="Middle"/>
-                    <Fluent:Button Header="Panel" Size="Middle"/>
-                    <Fluent:Button Header="Legend" Size="Middle"/>
-                    <Fluent:Button Header="Coordinate" Size="Middle"/>
-                    <Fluent:Button Header="Projection" Size="Middle"/>
-                    <Fluent:Button Header="Compass" Size="Middle"/>
-                    <Fluent:Button Header="Scale" Size="Middle"/>
-                </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Settings">
-                <Fluent:RibbonGroupBox Header="Plot">
-                    <Fluent:CheckBox Header="Render" Size="Middle"/>
+                <Fluent:RibbonGroupBox Header="Image">
+                    <Fluent:Button Header="Save Image" Size="Large"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
@@ -99,13 +91,36 @@
                     </RadioButton>
 
                     <Border BorderThickness="0 1 0 0" Margin="10" BorderBrush="#EAEAEA" Grid.Row="3"/>
-
                 </Grid>
             </Grid>
-            
-            <Frame Grid.Column="1">
-                
-            </Frame>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="17*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image/>
+                <TextBox IsReadOnly="True" Grid.Row="1" Text="Hello!"/>
+                <avalon:DockingManager Grid.Column="1" Grid.RowSpan="2">
+                    <avalon:DockingManager.Theme>
+                        <avalon:GenericTheme></avalon:GenericTheme>
+                    </avalon:DockingManager.Theme>
+                    <avalon:LayoutRoot>
+                        <avalon:LayoutPanel Orientation="Horizontal">
+                            <avalon:LayoutAnchorablePaneGroup DockMinWidth="50" DockWidth="150" FloatingWidth="270">
+                                <avalon:LayoutAnchorablePane x:Name="panelRight" DockWidth="240" FloatingWidth="240">
+                                    <avalon:LayoutAnchorable Title="Geom"></avalon:LayoutAnchorable>
+                                    <avalon:LayoutAnchorable Title="Theme"></avalon:LayoutAnchorable>
+                                </avalon:LayoutAnchorablePane>
+                            </avalon:LayoutAnchorablePaneGroup>
+                        </avalon:LayoutPanel>
+                    </avalon:LayoutRoot>
+                </avalon:DockingManager>
+            </Grid>
         </Grid>
     </Grid>
 </Fluent:RibbonWindow>
