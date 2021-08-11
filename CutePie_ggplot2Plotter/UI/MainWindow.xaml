@@ -1,126 +1,215 @@
-﻿<Fluent:RibbonWindow 
-    x:Class="CutePie_ggplot2Plotter.MainWindow"
+﻿<Fluent:RibbonWindow
+    x:Class="CutePie_ggplot2Plotter.UI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Fluent="urn:fluent-ribbon"
-    xmlns:avalon="https://github.com/Dirkster99/AvalonDock"
-    xmlns:local="clr-namespace:CutePie_ggplot2Plotter"
+    xmlns:app="clr-namespace:CutePie_ggplot2Plotter"
     mc:Ignorable="d"
-    Title="Cute Pie's ggplot2 Plotter"
-    FontFamily="Times New Roman" FontSize="14"
-    Height="450" Width="800">
+    Title="CutePie ggplot Plotter"
+    FontFamily="{DynamicResource GlobalFontFamily}" FontSize="16" Foreground="{DynamicResource IdealForeBrush}"
+    Height="660" Width="990" MinHeight="660" MinWidth="990" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+        <CollectionViewSource x:Key="sysFonts" Source="{x:Static Fonts.SystemFontFamilies}"/>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="160"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Fluent:Ribbon>
-            <Fluent:RibbonTabItem Header="Data">
-                <Fluent:RibbonGroupBox Header="Import">
-                    <Fluent:DropDownButton Header="Table Data" Size="Middle">
-                        <Fluent:Button Header="Textual" Size="Middle"/>
-                        <Fluent:Button Header="RDS" Size="Middle"/>
-                        <Fluent:Button Header="Excel" Size="Middle"/>
-                        <Fluent:Button Header="Stata" Size="Middle"/>
-                        <Fluent:Button Header="SPSS" Size="Middle"/>
-                        <Fluent:Button Header="SAS" Size="Middle"/>
-                    </Fluent:DropDownButton>
-                    <Fluent:DropDownButton Header="Spatial Features" Size="Middle">
-                        <Fluent:Button Header="Shapefile" Size="Middle"/>
-                        <Fluent:Button Header="GeoJson" Size="Middle"/>
-                        <Fluent:Button Header="KML" Size="Middle"/>
-                        <Fluent:Button Header="GPX" Size="Middle"/>
-                        <Fluent:Button Header="GPKG" Size="Middle"/>
-                    </Fluent:DropDownButton>
-                    <Fluent:Button Header="From DataBase" Size="Middle"/>
-                </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="Manipulation">
-                    <Fluent:DropDownButton Header="Row" Size="Middle">
-                        <Fluent:Button Header="Filter" Size="Middle"/>
-                        <Fluent:Button Header="Sort" Size="Middle"/>
-                    </Fluent:DropDownButton>
-                    <Fluent:DropDownButton Header="Column" Size="Middle">
-                        <Fluent:Button Header="Select" Size="Middle"/>
-                        <Fluent:Button Header="Rename" Size="Middle"/>
-                        <Fluent:Button Header="Calculate" Size="Middle"/>
-                    </Fluent:DropDownButton>
-                    <Fluent:Button Header="Join" Size="Middle"/>
-                    <Fluent:Button Header="Group" Size="Middle"/>
-                </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Plot">
-                <Fluent:RibbonGroupBox Header="View">
-                    <Fluent:CheckBox Header="Show Attributes" Size="Middle" IsChecked="True"/>
-                    <Fluent:CheckBox Header="Show Code" Size="Middle" IsChecked="True"/>
-                    <Fluent:CheckBox Header="Render" Size="Middle" IsChecked="True"/>
-                </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="Image">
-                    <Fluent:Button Header="Save Image" Size="Large"/>
-                </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-        </Fluent:Ribbon>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.RowSpan="2">
             <Grid>
-                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Text="Navigator" 
+                           Margin="15 20 0 10"
+                           Foreground="#8F8F8F" FontSize="18"/>
+                <RadioButton Content="Data"
+                             Grid.Row="1" Padding="10 0 0 0"
+                             Style="{DynamicResource NavigatorRadioButton}"
+                             Checked="SwitchToDataPage"/>
+                <RadioButton Content="Plot"
+                             Grid.Row="2" Padding="10 0 0 0"
+                             Style="{DynamicResource NavigatorRadioButton}"
+                             Checked="SwitchToPlotPage"/>
+
+            </Grid>
+        </Grid>
+
+        <Fluent:Ribbon Grid.Column="1">
+            <Fluent:Ribbon.StartScreen>
+                <Fluent:StartScreen x:Name="startScreen" IsOpen="True" Shown="False">
+                    <Fluent:StartScreenTabControl>
+                        <Fluent:StartScreenTabControl.LeftContent>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Fluent:TwoLineLabel
+                                    Text="CutePie ggplot Plotter" FontSize="36" FontWeight="Bold"
+                                    VerticalAlignment="Top" Margin="20" HorizontalAlignment="Center"
+                                    Foreground="White"/>
+                                <Border Grid.Row="5" BorderThickness="0 1 0 0" BorderBrush="White" Margin="50 0 50 0"/>
+                                <Button Content="Start" FontSize="24"
+                                        Height="{Binding ElementName=home_FluentButton,Path=ActualWidth}" Grid.Row="5" Margin="50"
+                                        Style="{DynamicResource StartScreenLeftButton}"
+                                        Click="EntryMainInterface"/>
+                            </Grid>
+                        </Fluent:StartScreenTabControl.LeftContent>
+
+                        <Fluent:StartScreenTabControl.RightContent>
+                            <StackPanel>
+                                <TextBlock Text="Welcome to CutePie ggplot Plotter!" TextWrapping="Wrap"
+                                           FontSize="28" Margin="20"/>
+                            </StackPanel>
+                        </Fluent:StartScreenTabControl.RightContent>
+                    </Fluent:StartScreenTabControl>
+                </Fluent:StartScreen>
+            </Fluent:Ribbon.StartScreen>
+
+            <Fluent:Ribbon.Menu>
+                <Fluent:Backstage Header="Files" Background="{DynamicResource AccentBaseBrush}">
+                    <Fluent:BackstageTabControl>
+                        <Fluent:BackstageTabItem Header="Settings" FontSize="18">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Text="Style" FontSize="36" Margin="20" Grid.ColumnSpan="2"/>
+                                
+                                <TextBlock Text="Base Color"
+                                           Grid.Row="1" VerticalAlignment="Center" Margin="40 0 0 0"/>
+                                <Fluent:ComboBox x:Name="baseColorSelector" ItemsSource="{Binding Source={StaticResource BaseColors},XPath=Color/@Name}" SelectedIndex="0"
+                                                 Grid.Row="1" Grid.Column="1" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45 5 5 5" MaxDropDownHeight="180"
+                                                 SelectionChanged="BaseColorChange"/>
+                                <TextBlock Text="Color Scheme"
+                                           Grid.Row="2" VerticalAlignment="Center" Margin="40 0 0 0"/>
+                                <Fluent:ComboBox x:Name="colorSchemeSelector" ItemsSource="{Binding Source={StaticResource ColorSchemes},XPath=Color/@Name}" SelectedIndex="14" IsSynchronizedWithCurrentItem="True"
+                                                 Grid.Column="1" Grid.Row="2" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45 5 5 5" MaxDropDownHeight="180"
+                                                 SelectionChanged="ColorSchemeChange"/>
+
+                                <TextBlock Text="Font" FontSize="36" Margin="20" Grid.Row="3" Grid.ColumnSpan="2"/>
+                                <TextBlock Text="Font Family"
+                                           VerticalAlignment="Center" Grid.Row="4" Margin="40 0 0 0"/>
+                                <Fluent:ComboBox ItemsSource="{Binding Source={StaticResource sysFonts}}" IsSynchronizedWithCurrentItem="True"
+                                                 Grid.Column="1" Grid.Row="4" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45 5 5 5" MaxDropDownHeight="180"
+                                                 Loaded="FontSelectorInit" SelectionChanged="ChangeFont">
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" FontFamily="{Binding}" ToolTip="{Binding}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </Fluent:ComboBox>
+
+
+                            </Grid>
+                        </Fluent:BackstageTabItem>
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>
+            
+            <Fluent:RibbonTabItem Header="Tools">
+                
+            </Fluent:RibbonTabItem>
+            <Fluent:Ribbon.ToolBarItems>
+                <Fluent:Button x:Name="accountEntry" Header="Account" Size="Middle"
+                               Icon="{DynamicResource AccountIcon}"
+                               Click="ShowAccountInterface"/>
+                <Fluent:Button Size="Middle" Header="Help"
+                               Icon="{DynamicResource HelpIcon}"/>
+
+            </Fluent:Ribbon.ToolBarItems>
+        </Fluent:Ribbon>
+
+        <Rectangle Grid.RowSpan="2" Grid.Column="1" Stroke="#EAEAEA" HorizontalAlignment="Left"/>
+
+        <Popup x:Name="accountInterface" PlacementTarget="{Binding ElementName=accountEntry}"
+               PopupAnimation="None" Placement="Bottom"
+               AllowsTransparency="True" StaysOpen="False">
+            <Grid>
+                <Rectangle Fill="White" Margin="5" Opacity="0.8" RadiusY="2" RadiusX="2">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="Silver" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"></DropShadowEffect>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Grid Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Navigation" Foreground="#8F8F8F" FontSize="16" Margin="15 15 0 20"></TextBlock>
-                    <RadioButton Style="{DynamicResource RadioButtonStyle}" Grid.Row="1" IsChecked="True">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="10 0 0 0" Text="Data Preview"  FontSize="14" VerticalAlignment="Center" 
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type RadioButton}}}" />
-                        </StackPanel>
-                    </RadioButton>
+                    <Label Content="Account:" Grid.Row="0"/>
+                    <Label Content="Authority:" Grid.Row="1"/>
+                    <Label Content="Status:" Grid.Row="2"/>
+                    <Label Content="Affiliation:" Grid.Row="3"/>
 
-                    <RadioButton  Style="{DynamicResource RadioButtonStyle}" Grid.Row="2">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="10 0 0 0" Text="Plot Design"  FontSize="14" VerticalAlignment="Center"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type RadioButton}}}" />
-                        </StackPanel>
-                    </RadioButton>
+                    <Label Content="PiePie" Grid.Row="0" Grid.Column="1"/>
+                    <Label Content="Administer" Grid.Row="1" Grid.Column="1"/>
+                    <Label Content="Online" Grid.Row="2" Grid.Column="1"/>
+                    <Label Content="Xi'an Jiaotong University" Grid.Row="3" Grid.Column="1"/>
 
-                    <Border BorderThickness="0 1 0 0" Margin="10" BorderBrush="#EAEAEA" Grid.Row="3"/>
+                    <Button Content="Log Out"
+                            Grid.Row="4" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0 20 0 0"
+                            Background="{x:Null}" BorderBrush="{x:Null}"/>
                 </Grid>
             </Grid>
+        </Popup>
 
-            <Grid Grid.Row="1" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="17*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="8*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Image/>
-                <TextBox IsReadOnly="True" Grid.Row="1" Text="Hello!"/>
-                <avalon:DockingManager Grid.Column="1" Grid.RowSpan="2">
-                    <avalon:DockingManager.Theme>
-                        <avalon:GenericTheme></avalon:GenericTheme>
-                    </avalon:DockingManager.Theme>
-                    <avalon:LayoutRoot>
-                        <avalon:LayoutPanel Orientation="Horizontal">
-                            <avalon:LayoutAnchorablePaneGroup DockMinWidth="50" DockWidth="150" FloatingWidth="270">
-                                <avalon:LayoutAnchorablePane x:Name="panelRight" DockWidth="240" FloatingWidth="240">
-                                    <avalon:LayoutAnchorable Title="Geom"></avalon:LayoutAnchorable>
-                                    <avalon:LayoutAnchorable Title="Theme"></avalon:LayoutAnchorable>
-                                </avalon:LayoutAnchorablePane>
-                            </avalon:LayoutAnchorablePaneGroup>
-                        </avalon:LayoutPanel>
-                    </avalon:LayoutRoot>
-                </avalon:DockingManager>
-            </Grid>
-        </Grid>
+        <Frame x:Name="mainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+
+        <StatusBar x:Name="statusBar"  Grid.Row="2" Grid.ColumnSpan="2"
+                   BorderBrush="Silver" Background="{x:Null}" Foreground="{DynamicResource IdealForeBrush}" BorderThickness="0 1 0 0"
+                   FontFamily="{DynamicResource GlobalFontFamily}" FontSize="14"
+                   Loaded="StatusBar_Loaded">
+            <StatusBarItem HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="CPU: "/>
+                    <TextBlock x:Name="cpuInformation"/>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Margin="5"/>
+            <StatusBarItem HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="GPU: "/>
+                    <TextBlock x:Name="gpuInformation"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Fluent:RibbonWindow>

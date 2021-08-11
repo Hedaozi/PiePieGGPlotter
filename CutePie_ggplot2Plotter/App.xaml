@@ -6,7 +6,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="UI/WidgetsStyle.xaml"/>
+                <ResourceDictionary Source="UI/Style/GlobalSettings.xaml"/>
+                <ResourceDictionary Source="UI/Style/Common.xaml"/>
+                <ResourceDictionary Source="UI/Style/IconButton.xaml"/>
+                <ResourceDictionary Source="UI/Style/Navigator.xaml"/>
+                <ResourceDictionary Source="UI/Style/StartScreen.xaml"/>
+                <ResourceDictionary Source="UI/Style/StylesList.xaml"/>
+                <ResourceDictionary Source="UI/Icons/Icons.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Themes/Light.Blue.xaml"/>
             </ResourceDictionary.MergedDictionaries>
