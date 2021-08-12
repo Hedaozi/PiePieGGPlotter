@@ -72,7 +72,6 @@
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Fill" Color="{DynamicResource Fluent.Ribbon.Colors.AccentColor20}"/>
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Checked.Stroke" Color="{DynamicResource Fluent.Ribbon.Colors.AccentColor60}"/>
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Checked.Fill" Color="{DynamicResource Fluent.Ribbon.Colors.AccentColor40}"/>
-    <SolidColorBrush x:Key="TreeViewItemIsSelectedBackground" Color="{DynamicResource Fluent.Ribbon.Colors.AccentColor60}"/>
     <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Fill" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Stroke" Color="#FF818181"/>
@@ -151,14 +150,16 @@
                             <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource TreeViewItemIsSelectedBackground}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource AccentBaseBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource Fluent.Ribbon.Brushes.IdealForegroundColorBrush}"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="true"/>
                                 <Condition Property="IsSelectionActive" Value="false"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource TreeViewItemIsSelectedBackground}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource AccentBaseBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource Fluent.Ribbon.Brushes.IdealForegroundColorBrush}"/>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
