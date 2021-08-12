@@ -123,6 +123,7 @@
         <Setter Property="Padding" Value="1,0,0,0"/>
         <Setter Property="Foreground" Value="{DynamicResource IdealForeBrush}"/>
         <Setter Property="FocusVisualStyle" Value="{DynamicResource TreeViewItemFocusVisual}"/>
+        <Setter Property="Margin" Value="0 2.5 0 2.5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">

@@ -29,6 +29,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Text="Navigator" 
@@ -42,6 +44,14 @@
                              Grid.Row="2" Padding="10 0 0 0"
                              Style="{DynamicResource NavigatorRadioButton}"
                              Checked="SwitchToPlotPage"/>
+                <RadioButton Content="Map"
+                             Grid.Row="3" Padding="10 0 0 0"
+                             Style="{DynamicResource NavigatorRadioButton}"
+                             Checked="SwitchToMapPage"/>
+                <RadioButton Content="R Env"
+                             Grid.Row="4" Padding="10 0 0 0"
+                             Style="{DynamicResource NavigatorRadioButton}"
+                             Checked="SwitchToREnvPage"/>
 
             </Grid>
         </Grid>
@@ -137,9 +147,17 @@
                     </Fluent:BackstageTabControl>
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
-            
+
             <Fluent:RibbonTabItem Header="Tools">
-                
+                <Fluent:RibbonGroupBox Header="Data">
+
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Plot">
+
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Map">
+
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:Ribbon.ToolBarItems>
                 <Fluent:Button x:Name="accountEntry" Header="Account" Size="Middle"
