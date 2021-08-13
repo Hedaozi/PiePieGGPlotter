@@ -99,28 +99,45 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="R Version" FontSize="36" Margin="20" Grid.ColumnSpan="2"/>
-                                <TextBlock Text="R Version"
+                                <TextBlock Text="R Environment" FontSize="36" Margin="20" Grid.ColumnSpan="2"/>
+                                
+                                <TextBlock Text="R Home"
                                            Grid.Row="1" VerticalAlignment="Center" Margin="40 0 0 0"/>
+                                <Fluent:TextBox x:Name="rHomeSelector" IsEnabled="False" Text="C:\Program Files\R"
+                                                Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45 5 5 5" Padding="0 0 20 0" Width="{Binding ElementName=rVersionSelector,Path=ActualWidth}"/>
+                                
+                                <TextBlock Text="R Version"
+                                           Grid.Row="2" VerticalAlignment="Center" Margin="40 0 0 0"/>
                                 <Fluent:ComboBox x:Name="rVersionSelector" 
-                                                 Grid.Row="1" Grid.Column="1" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45 5 5 5" MaxDropDownHeight="180"
+                                                 Grid.Row="2" Grid.Column="1" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45 5 5 5" MaxDropDownHeight="180"
                                                  SelectionChanged="BaseColorChange"/>
 
-                                <TextBlock Text="R Packages" FontSize="36" Margin="20" Grid.Row="2" Grid.ColumnSpan="2"/>
-                                <TextBlock Text="ggplot2"
-                                           Grid.Row="3" VerticalAlignment="Center" Margin="40 0 0 0"/>
-                                <TextBlock x:Name="ggplot2Status" Text="Unknown"
-                                           Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 5 0 5"/>
-                                <TextBlock Text="tmap"
+                                <TextBlock Text="R Packages" FontSize="36" Margin="20" Grid.Row="3" Grid.ColumnSpan="2"/>
+                                
+                                <TextBlock Text="dplyr"
                                            Grid.Row="4" VerticalAlignment="Center" Margin="40 0 0 0"/>
+                                <TextBlock x:Name="dplyrStatus" Text="Unknown"
+                                           Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 10 0 5"/>
+                                <TextBlock Text="ggplot2"
+                                           Grid.Row="5" VerticalAlignment="Center" Margin="40 0 0 0"/>
+                                <TextBlock x:Name="ggplot2Status" Text="Unknown"
+                                           Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 10 0 5"/>
+                                <TextBlock Text="sf"
+                                           Grid.Row="6" VerticalAlignment="Center" Margin="40 0 0 0"/>
+                                <TextBlock x:Name="sfStatus" Text="Unknown"
+                                           Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 10 0 5"/>
+                                <TextBlock Text="tmap"
+                                           Grid.Row="7" VerticalAlignment="Center" Margin="40 0 0 0"/>
                                 <TextBlock x:Name="tmapStatus" Text="Unknown"
-                                           Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 5 0 5"/>
+                                           Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 10 0 5"/>
                             </Grid>
                         </Fluent:BackstageTabItem>
                         <Fluent:BackstageTabItem Header="Settings" FontSize="18">
@@ -239,23 +256,9 @@
 
         <Frame x:Name="mainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
-        <StatusBar x:Name="statusBar"  Grid.Row="2" Grid.ColumnSpan="2"
+        <StatusBar x:Name="statusBar"  Grid.Row="2" Grid.ColumnSpan="2" Height="20"
                    BorderBrush="Silver" Background="{x:Null}" Foreground="{DynamicResource IdealForeBrush}" BorderThickness="0 1 0 0"
-                   FontFamily="{DynamicResource GlobalFontFamily}" FontSize="14"
-                   Loaded="StatusBar_Loaded">
-            <StatusBarItem HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="CPU: "/>
-                    <TextBlock x:Name="cpuInformation"/>
-                </StackPanel>
-            </StatusBarItem>
-            <Separator Margin="5"/>
-            <StatusBarItem HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="GPU: "/>
-                    <TextBlock x:Name="gpuInformation"/>
-                </StackPanel>
-            </StatusBarItem>
+                   FontFamily="{DynamicResource GlobalFontFamily}" FontSize="14">
         </StatusBar>
     </Grid>
 </Fluent:RibbonWindow>

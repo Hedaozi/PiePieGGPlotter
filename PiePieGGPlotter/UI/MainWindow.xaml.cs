@@ -13,11 +13,6 @@ namespace PiePieGGPlotter.UI
 
         App app = (App)Application.Current;
 
-        private void StatusBar_Loaded(object sender, RoutedEventArgs e)
-        {
-            cpuInformation.Text = App.Cpus[App.CPUIndex];
-            gpuInformation.Text = App.Gpus[App.GPUIndex];
-        }
 
         private void FontSelectorInit(object sender, RoutedEventArgs e)
         {

@@ -10,10 +10,6 @@ namespace PiePieGGPlotter
     /// </summary>
     public partial class App : Application
     {
-        public static readonly List<string> Cpus = Utils.DetectEquipment.GetCPUNames();
-        public static readonly List<string> Gpus = Utils.DetectEquipment.GetGPUNames();
-        public static readonly int CPUIndex = Cpus.Count - 1;
-        public static readonly int GPUIndex = Gpus.Count - 1;
 
         public UI.MainPages.DataPage dataPage = new UI.MainPages.DataPage();
         public UI.MainPages.PlotPage plotPage = new UI.MainPages.PlotPage();
