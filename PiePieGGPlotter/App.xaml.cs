@@ -18,7 +18,6 @@ namespace PiePieGGPlotter
         public UI.MainPages.DataPage dataPage = new UI.MainPages.DataPage();
         public UI.MainPages.PlotPage plotPage = new UI.MainPages.PlotPage();
         public UI.MainPages.MapPage mapPage = new UI.MainPages.MapPage();
-        public UI.MainPages.REnvPage rEnvPage = new UI.MainPages.REnvPage();
 
         public string BaseColor { get; set; }
         public string ColorScheme { get; set; }

@@ -113,9 +113,6 @@
     <Compile Include="UI\MainPages\PlotPage.xaml.cs">
       <DependentUpon>PlotPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\MainPages\REnvPage.xaml.cs">
-      <DependentUpon>REnvPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -165,10 +162,6 @@
     <Page Include="UI\MainPages\PlotPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\MainPages\REnvPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

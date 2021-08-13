@@ -31,7 +31,6 @@ namespace PiePieGGPlotter.UI
         private void SwitchToDataPage(object sender, RoutedEventArgs e) => mainFrame.Content = app.dataPage;
         private void SwitchToPlotPage(object sender, RoutedEventArgs e) => mainFrame.Content = app.plotPage;
         private void SwitchToMapPage(object sender, RoutedEventArgs e) => mainFrame.Content = app.mapPage;
-        private void SwitchToREnvPage(object sender, RoutedEventArgs e) => mainFrame.Content = app.rEnvPage;
 
         private void BaseColorChange(object sender, SelectionChangedEventArgs e)
         {
